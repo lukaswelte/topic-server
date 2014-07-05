@@ -96,9 +96,10 @@ $app->post('/topic', function() use ($app, $db) {
 		$startdate = $post->startdate;
 		$enddate = $post->enddate;
 		$category = $post->category;
+		$creatorimage = $post->creatorimage;
 		
-		$stmt = $db->prepare("INSERT INTO topic(name,startdate,enddate,category) VALUES(:name,:startdate,:enddate,:category)");
-		$stmt->execute(array(':name' => $name, ':startdate' => $startdate, ':enddate' => $enddate, ':category' => $category));
+		$stmt = $db->prepare("INSERT INTO topic(name,startdate,enddate,category,creatorimage) VALUES(:name,:startdate,:enddate,:category,:creatorimage)");
+		$stmt->execute(array(':name' => $name, ':startdate' => $startdate, ':enddate' => $enddate, ':category' => $category, ':creatorimage' => $creatorimage));
 		$id = $db->lastInsertId();
 		
 
@@ -122,9 +123,10 @@ $app->put('/topic/:id', function ($id) use ($app, $db) {
 		$startdate = $post->startdate;
 		$enddate = $post->enddate;
 		$category = $post->category;
+		$creatorimage = $post->creatorimage;
 		
-		$stmt = $db->prepare("UPDATE topic SET name=?, startdate=?, enddate=?, category=? WHERE id = ?");
-		$stmt->execute(array($name, $startdate, $enddate, $category, $id));
+		$stmt = $db->prepare("UPDATE topic SET name=?, startdate=?, enddate=?, category=?, creatorimage=? WHERE id = ?");
+		$stmt->execute(array($name, $startdate, $enddate, $category, $creatorimage, $id));
 
 		$affected_rows = $stmt->rowCount();
 
