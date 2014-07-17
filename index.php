@@ -195,4 +195,3 @@ $app->get('/category', /**
     });
 
 $app->run();
-?>
